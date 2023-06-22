@@ -61,18 +61,21 @@ const AuthForm = (props: Props) => {
             register={register}
             errors={errors}
             type="text"
+            disabled={isLoading}
           />
         )}
         <InputItem
           id={"email"}
           register={register}
           /* type="email" */ errors={errors}
+          disabled={isLoading}
         />
         <InputItem
           id={"password"}
           register={register}
           /* type="password" */
           errors={errors}
+          disabled={isLoading}
         />
         <div className="pt-3 flex justify-end">
           <Button type="submit" disabled={isLoading}>
