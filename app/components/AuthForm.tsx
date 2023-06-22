@@ -46,7 +46,7 @@ const AuthForm = (props: Props) => {
   return (
     <div
       className="mt-6 bg-slate-100
-  p-8 shadow rounded-lg "
+  p-8 pb-10 shadow rounded-lg "
     >
       <form className="space-y-3" onSubmit={handleSubmit(submitHandler)}>
         {variant === "Sign Up" && (
@@ -68,7 +68,7 @@ const AuthForm = (props: Props) => {
           /* type="password" */
           errors={errors}
         />
-        <div className="pt-4 flex justify-end">
+        <div className="pt-5 flex justify-end">
           <Button type="submit" disabled={isLoading}>
             {variant}
           </Button>
