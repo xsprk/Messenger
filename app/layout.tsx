@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "MessengerClone",
   description:
-    "Fullstack: Next.js Rest API + Auth + MongoDB + Cloudinary + Pusher",
+    "Fullstack: Next.js Rest API + NextAuth + MongoDB + Cloudinary + Pusher + HeadlessUI",
 };
 
 export default function RootLayout({

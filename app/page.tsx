@@ -1,14 +1,15 @@
 import Image from "next/image";
+import AuthForm from "./components/AuthForm";
 
 export default function SigninPage() {
   return (
     <div
       id="outer-frame"
-      className="flex flex-col min-h-screen justify-center py-12 sm:px-6 lg:px-8"
+      className="flex flex-col w-full min-h-screen justify-center items-center py-12 sm:px-6 lg:px-8"
     >
       <div
         id="container"
-        className="mx-auto w-full max-w-md text-center"
+        className=" max-w-md text-center"
         style={{ marginTop: "-38svh" }}
       >
         <Image
@@ -21,6 +22,7 @@ export default function SigninPage() {
         <h2 className="mt-6 text-2xl font-bold tracking-tight ">
           Sign in to your account
         </h2>
+        <AuthForm />
       </div>
     </div>
   );
