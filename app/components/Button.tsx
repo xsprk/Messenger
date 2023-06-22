@@ -37,10 +37,14 @@ const Button = ({
       px-5
       py-2
       font-semibold
-      focus-visible: outline
-      focus-visible: outline-2
-      focus-visible: outline-offset-2
-     text-slate-100 hover:text-blue-400
+      focus-visible:outline
+      focus-visible:outline-2
+      focus-visible:outline-blue-400
+      focus-visible:outline-offset-2
+     text-slate-100
+      hover:outline-blue-400
+      hover:outline-offset-2
+      hover:bg-opacity-90
       `,
         disabled && "opacity-50 cursor-default",
         fullWidth && "w-full",

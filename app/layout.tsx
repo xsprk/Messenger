@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          inter.className + " min-h-screen bg-slate-200 text-slate-800l"
+          inter.className + " min-h-screen bg-slate-400 text-slate-800l"
         }
       >
         {children}

@@ -45,7 +45,7 @@ const AuthForm = (props: Props) => {
 
   return (
     <div
-      className="mt-6 bg-slate-100
+      className="mt-6 bg-slate-300
   p-8 pb-10 shadow rounded-lg "
     >
       <form className="space-y-3" onSubmit={handleSubmit(submitHandler)}>
