@@ -1,5 +1,5 @@
 import Image from "next/image";
-import AuthForm from "./components/AuthForm";
+import AuthForm from "./(site)/components/AuthForm";
 
 export default function SigninPage() {
   return (
@@ -10,7 +10,7 @@ export default function SigninPage() {
       <div
         id="container"
         className=" max-w-md text-center"
-        style={{ marginTop: "-28svh" }}
+        style={{ marginTop: "-18svh" }}
       >
         <Image
           alt="logo"

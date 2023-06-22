@@ -1,8 +1,6 @@
-"use client";
-
 import clsx from "clsx";
 import React, { ReactNode } from "react";
-import { capitalizeFirstLetter } from "./InputItem";
+import { capitalizeFirstLetter } from "../(site)/components/InputItem";
 
 type Props = {
   type?: "button" | "submit" | "reset";
@@ -33,7 +31,7 @@ const Button = ({
       flex
       justify-center
       rounded-md
-      
+      shadow-sm
       px-5
       py-2
       font-semibold

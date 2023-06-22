@@ -42,11 +42,13 @@ const InputItem: React.FC<InputProps> = ({
           `
         form-input
         block
+        w-full
         rounded-md
         border-0
         py-1.5 
         shadow-sm
         ring-1
+        outline-none
         ring-inset
         bg-slate-100
         ring-slate-400
