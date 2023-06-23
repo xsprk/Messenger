@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import SocialLoginButton from "./SocialLoginButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import axios from "axios";
+import { Toaster } from "react-hot-toast";
 
 type Props = {};
 
@@ -56,6 +57,7 @@ const AuthForm = (props: Props) => {
       className="mt-6 bg-slate-300
   p-8 pb-10 shadow rounded-lg "
     >
+      <Toaster />
       <form className="space-y-3" onSubmit={handleSubmit(submitHandler)}>
         {variant === "Sign Up" && (
           <InputItem
