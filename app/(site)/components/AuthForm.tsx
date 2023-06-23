@@ -6,6 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../../components/Button";
 import SocialLoginButton from "./SocialLoginButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
+import axios from "axios";
 
 type Props = {};
 
@@ -38,7 +39,8 @@ const AuthForm = (props: Props) => {
   const submitHandler: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     if (variant === "Sign Up") {
-      // Axios Register
+      // Axios signup endpoint
+      axios.post("/api/signup", data);
     }
     if (variant === "Log In") {
       // NextAuth SignIn
