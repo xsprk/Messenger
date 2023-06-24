@@ -79,8 +79,26 @@ const AuthForm = (props: Props) => {
     }
   };
 
-  function socialAction(arg0: string): void {
-    throw new Error("Function not implemented.");
+  function socialAction(socialMedia: string): void {
+    setIsLoading(true);
+    /*  toast.loading("Signing in...", { id: "1" });
+    signIn(socialMedia, { redirect: false })
+      .then((callback) => {
+        if (callback?.error) {
+          toast.error("Invalid Credentials", { id: "1" });
+        } else if (callback?.ok) {
+          toast.success("Success, Logged in", { id: "1" });
+          reset();
+        }
+      })
+      .finally(() => setIsLoading(false)); } */
+
+    toast.promise(signIn(socialMedia, { redirect: false }), {
+      loading: "Connecting to Github",
+      success: <b>Success, connected with Github</b>,
+      error: <b>Unable to connect with Github </b>,
+    });
+    setIsLoading(false);
   }
 
   return (
