@@ -7,7 +7,8 @@ import Button from "../../components/Button";
 import SocialLoginButton from "./SocialLoginButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import axios from "axios";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 type Props = {};
 
@@ -28,6 +29,7 @@ const AuthForm = (props: Props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -39,12 +41,41 @@ const AuthForm = (props: Props) => {
 
   const submitHandler: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+
     if (variant === "Sign Up") {
+      /* axios.post("/api/signup", data); */
       // Axios signup endpoint
-      axios.post("/api/signup", data);
+      toast.loading("Signing up...", { id: "1" });
+      axios
+        .post("/api/signup", data)
+        .then(() => {
+          toast.success(<b>Success, Signed Up!</b>, { id: "1" });
+          reset();
+        })
+        .catch((err) => {
+          toast.error(<b>{err.response.data || "Something went wrong!"}</b>, {
+            id: "1",
+          });
+        })
+        .finally(() => setIsLoading(false));
     }
+
     if (variant === "Log In") {
       // NextAuth SignIn
+      toast.loading("Signing in...", { id: "1" });
+      signIn("credentials", {
+        ...data,
+        redirect: false,
+      })
+        .then((callback) => {
+          if (callback?.error) {
+            toast.error("Invalid Credentials", { id: "1" });
+          } else if (callback?.ok) {
+            toast.success("Success, Logged in", { id: "1" });
+            reset();
+          }
+        })
+        .finally(() => setIsLoading(false));
     }
   };
 
