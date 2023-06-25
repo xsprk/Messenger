@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import AuthForm from "./(site)/components/AuthForm";
+import { SessionProvider } from "next-auth/react";
 
 export default function SigninPage() {
   return (
@@ -21,8 +24,10 @@ export default function SigninPage() {
         />
         <h2 className="mt-6 text-2xl font-bold tracking-tight ">
           Sign in to your account
-        </h2>
-        <AuthForm />
+        </h2>{" "}
+        <SessionProvider>
+          <AuthForm />
+        </SessionProvider>
       </div>
     </div>
   );
