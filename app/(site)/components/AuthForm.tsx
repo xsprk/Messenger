@@ -79,7 +79,7 @@ const AuthForm = (props: Props) => {
           } else if (callback?.ok) {
             toast.success("Success, Logged in", { id: "1" });
             reset();
-            router.push("/user");
+            router.push("/users");
           }
         })
         .finally(() => setIsLoading(false));
@@ -100,7 +100,7 @@ const AuthForm = (props: Props) => {
       })
       .finally(() => setIsLoading(false)); } */
 
-    toast.promise(signIn(socialMedia, { redirect: false }), {
+    toast.promise(signIn(socialMedia, { callbackUrl: "/users" }), {
       loading: `Connecting to ${capitalizeFirstLetter(socialMedia)}`,
       success: (
         <b>Success, connected with {capitalizeFirstLetter(socialMedia)}</b>
@@ -112,9 +112,9 @@ const AuthForm = (props: Props) => {
 
   useEffect(() => {
     if (session?.status === "authenticated") {
-      router.push("/user");
+      router.push("/users");
     }
-  }, [session?.status, router]);
+  }, [session?.status]);
 
   return (
     <div
