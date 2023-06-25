@@ -1,17 +1,13 @@
-"use client";
-
-import { signOut } from "next-auth/react";
-import React from "react";
+import EmptyPanel from "../components/EmptyPanel";
 
 type Props = {};
 
-const page = (props: Props) => {
+const UserPage = (props: Props) => {
   return (
-    <div>
-      page
-      <button onClick={() => signOut()}>SignOut</button>
-    </div>
+    <main className="hidden lg:block lg:pl-80 min-h-screen">
+      <EmptyPanel />
+    </main>
   );
 };
 
-export default page;
+export default UserPage;
