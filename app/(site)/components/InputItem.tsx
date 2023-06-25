@@ -3,6 +3,7 @@
 import React from "react";
 import clsx from "clsx";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 
 type InputProps = {
   id: string;
@@ -12,10 +13,6 @@ type InputProps = {
   errors: FieldErrors<FieldValues>;
   disabled?: boolean;
 };
-
-export function capitalizeFirstLetter(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
 
 const InputItem: React.FC<InputProps> = ({
   id,
