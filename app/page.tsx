@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import AuthForm from "./(site)/components/AuthForm";
-import { SessionProvider } from "next-auth/react";
 
 export default function SigninPage() {
   return (
