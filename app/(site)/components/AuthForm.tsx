@@ -10,6 +10,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import Button from "../../components/Button";
 import SocialLoginButton from "./SocialLoginButton";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -20,6 +21,7 @@ const AuthForm = (props: Props) => {
   const [variant, setVariant] = useState<Variant>("Log In");
   const [isLoading, setIsLoading] = useState(false);
   const session = useSession();
+  const router = useRouter();
 
   const toggleVariant = useCallback(() => {
     if (variant === "Log In") {
@@ -108,9 +110,9 @@ const AuthForm = (props: Props) => {
 
   useEffect(() => {
     if (session?.status === "authenticated") {
-      console.log("Authenticated");
+      router.push("/user");
     }
-  }, [session?.status]);
+  }, [session?.status, router]);
 
   return (
     <div
