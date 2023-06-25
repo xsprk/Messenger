@@ -25,9 +25,7 @@ export default function SigninPage() {
         <h2 className="mt-6 text-2xl font-bold tracking-tight ">
           Sign in to your account
         </h2>{" "}
-        <SessionProvider>
-          <AuthForm />
-        </SessionProvider>
+        <AuthForm />
       </div>
     </div>
   );

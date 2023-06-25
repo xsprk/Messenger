@@ -4,13 +4,13 @@ import InputItem from "@/app/(site)/components/InputItem";
 import { capitalizeFirstLetter } from "@/app/utils/capitalizeFirstLetter";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import Button from "../../components/Button";
 import SocialLoginButton from "./SocialLoginButton";
-import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -56,6 +56,7 @@ const AuthForm = (props: Props) => {
         .then(() => {
           toast.success(<b>Success, Signed Up!</b>, { id: "1" });
           reset();
+          signIn("credentials", data);
         })
         .catch((err) => {
           toast.error(<b>{err.response.data || "Something went wrong!"}</b>, {
@@ -78,6 +79,7 @@ const AuthForm = (props: Props) => {
           } else if (callback?.ok) {
             toast.success("Success, Logged in", { id: "1" });
             reset();
+            router.push("/user");
           }
         })
         .finally(() => setIsLoading(false));
@@ -119,7 +121,6 @@ const AuthForm = (props: Props) => {
       className="mt-6 bg-slate-300
   p-8 pb-10 shadow rounded-lg "
     >
-      <Toaster />
       <form className="space-y-3" onSubmit={handleSubmit(submitHandler)}>
         {variant === "Sign Up" && (
           <InputItem
