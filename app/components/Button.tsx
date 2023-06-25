@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React, { ReactNode } from "react";
-import { capitalizeFirstLetter } from "../(site)/components/InputItem";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 type Props = {
   type?: "button" | "submit" | "reset";
