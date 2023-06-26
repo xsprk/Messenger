@@ -1,4 +1,4 @@
-import EmptyPanel from "./components/EmptyPanel";
+import EmptyPanel from "../components/asides/EmptyPanel";
 
 type Props = {};
 
