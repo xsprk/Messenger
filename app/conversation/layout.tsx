@@ -1,16 +1,18 @@
 import { ReactNode } from "react";
 import Sidebar from "../components/asides/Sidebar";
 import ConversationList from "./components/ConversationList";
+import getConversations from "../actions/getConversations";
 
 type Props = {
   children: ReactNode;
 };
 
 const ConversationLayout = async ({ children }: Props) => {
+  const conversations = await getConversations();
   return (
     <div className="relative w-full min-h-screen ">
       <Sidebar>
-        <ConversationList />
+        <ConversationList InitialConversations={conversations} />
       </Sidebar>
       {children}
     </div>

@@ -14,13 +14,13 @@ const useRoutes = () => {
   const routes = useMemo<RouteItem[]>(
     () => [
       {
-        label: "Chat",
+        label: "Chats",
         href: "/conversation",
         icon: HiChat,
-        active: pathname === "coversation" || !!conversationId,
+        active: pathname === "/conversation" || !!conversationId,
       },
       {
-        label: "Users",
+        label: "People",
         href: "/users",
         icon: HiUsers,
         active: pathname === "/users",
