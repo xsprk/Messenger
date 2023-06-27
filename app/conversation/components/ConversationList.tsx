@@ -21,8 +21,8 @@ const ConversationList = ({ InitialConversations = [] }: Props) => {
   return (
     <aside
       className={clsx(
-        `fixed left-0 lg:block inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto border-r border-slate-200`,
-        isOpen ? "hidden" : "block"
+        ` fixed left-0 lg:block inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto border-r border-slate-200 `,
+        isOpen ? "hidden " : " block "
       )}
     >
       <div className="p-5 flex flex-col">
@@ -32,13 +32,15 @@ const ConversationList = ({ InitialConversations = [] }: Props) => {
             <MdOutlineGroupAdd size={32} />
           </div>
         </div>
-        {conversations.map((conversation) => (
-          <ConversationBox
-            key={conversation.id}
-            conversation={conversation}
-            selected={conversation.id === conversationId}
-          ></ConversationBox>
-        ))}
+        <div className={clsx(isOpen ? "hidden" : "block")}>
+          {conversations.map((conversation) => (
+            <ConversationBox
+              key={conversation.id}
+              conversation={conversation}
+              selected={conversation.id === conversationId}
+            ></ConversationBox>
+          ))}
+        </div>
       </div>
     </aside>
   );
