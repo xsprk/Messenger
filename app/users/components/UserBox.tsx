@@ -19,11 +19,11 @@ const UserBox = ({ user }: Props) => {
     setIsLoading(true);
     toast.loading("Creating Conversation...", { id: "1" });
     axios
-      .post("/api/conversations", {
+      .post("/api/conversation", {
         userId: user.id,
       })
       .then((res) => {
-        router.push(`/conversations/${res.data.id}`);
+        router.push(`/conversation/${res.data.id}`);
         toast.success("Success, conversation Created", { id: "1" });
       })
       .catch((err) => toast.error("Error, " + err.message, { id: "1" }))
