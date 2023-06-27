@@ -24,7 +24,7 @@ const UserBox = ({ user }: Props) => {
       })
       .then((res) => {
         router.push(`/conversation/${res.data.id}`);
-        toast.success("Success, conversation Created", { id: "1" });
+        toast.success("Success, redirecting to Conversation", { id: "1" });
       })
       .catch((err) => toast.error("Error, " + err.message, { id: "1" }))
       .finally(() => setIsLoading(false));

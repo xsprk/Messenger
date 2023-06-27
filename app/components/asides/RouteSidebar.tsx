@@ -10,7 +10,7 @@ type Props = {
   currentUser: User;
 };
 
-const DesktopSidebar = ({ currentUser }: Props) => {
+const RouteSidebar = ({ currentUser }: Props) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
   console.log(currentUser);
@@ -49,4 +49,4 @@ const DesktopSidebar = ({ currentUser }: Props) => {
   );
 };
 
-export default DesktopSidebar;
+export default RouteSidebar;
