@@ -3,12 +3,17 @@
 import useRoutes from "@/app/hooks/useRoutes";
 import React, { ReactNode, useState } from "react";
 import RouteItem from "./RouteItem";
+import { User } from "@prisma/client";
+import Avatar from "../Avatar";
 
-type Props = {};
+type Props = {
+  currentUser: User;
+};
 
-const DesktopSidebar = ({}: Props) => {
+const DesktopSidebar = ({ currentUser }: Props) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
+  console.log(currentUser);
 
   return (
     <div
@@ -29,7 +34,17 @@ const DesktopSidebar = ({}: Props) => {
           ))}
         </ul>
       </nav>
-      Bott
+      <nav className="py-4 flex flex-col justify-between items-center">
+        <div
+          onClick={() => setIsOpen(true)}
+          className="cursor-pointer
+        hover:opacity-75
+        transition
+        "
+        >
+          <Avatar user={currentUser} />
+        </div>
+      </nav>
     </div>
   );
 };
