@@ -1,8 +1,11 @@
 "use client";
 
+import Avatar from "@/app/components/Avatar";
 import useOtherUsers from "@/app/hooks/useOtherUsers";
 import { Conversation, User } from "@prisma/client";
+import Link from "next/link";
 import React, { useMemo } from "react";
+import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2";
 
 type Props = {
   conversation: Conversation & { users: User[] };
@@ -24,7 +27,7 @@ const Header = ({ conversation }: Props) => {
   w-full
   flex
   border-b-[1px]
-  border-slate-300
+    border-slate-300
   px-4
   py-3
   lg:px-6
@@ -32,7 +35,24 @@ const Header = ({ conversation }: Props) => {
   items-center
   shadow-sm"
     >
-      Header
+      <div className="flex gap-3 items-center">
+        <Link
+          className="lg:hidden block text-blue-500 hover:text-blue-600 transition cursor-pointer "
+          href="/conversation"
+        >
+          <HiChevronLeft size={32} />
+        </Link>
+        <Avatar user={otherUsers[0]} />
+        <div className="flex flex-col">
+          <p>{conversation.name || otherUsers[0].name}</p>
+          <p className="text-sm font-light">{statusText}</p>
+        </div>
+      </div>
+      <HiEllipsisHorizontal
+        size={32}
+        onClick={() => {}}
+        className="text-blue-500 cursor-pointer hover:text-sky-600 transition"
+      />
     </div>
   );
 };
