@@ -2,7 +2,7 @@
 
 import getConversations from "@/app/actions/getConversations";
 import useConversation from "@/app/hooks/useConversation";
-import { Conversation } from "@prisma/client";
+import { ExtendedCoversationType } from "@/types";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -10,7 +10,7 @@ import { MdOutlineGroupAdd } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
 
 type Props = {
-  InitialConversations?: Conversation[];
+  InitialConversations?: ExtendedCoversationType[];
 };
 
 const ConversationList = ({ InitialConversations = [] }: Props) => {

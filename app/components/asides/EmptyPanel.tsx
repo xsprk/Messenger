@@ -17,7 +17,7 @@ const EmptyPanel = (props: Props) => {
   "
     >
       <h3 className="mt-2 text-xl  ">
-        Select a previous chat or start a new one
+        Select a previous chat or start a new conversation
       </h3>
     </div>
   );
