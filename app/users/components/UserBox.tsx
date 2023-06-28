@@ -17,14 +17,14 @@ const UserBox = ({ user }: Props) => {
 
   const handleClick = useCallback(() => {
     setIsLoading(true);
-    toast.loading("Creating Conversation...", { id: "1" });
+    toast.loading("Entering Conversation...", { id: "1" });
     axios
       .post("/api/conversation", {
         userId: user.id,
       })
       .then((res) => {
         router.push(`/conversation/${res.data.id}`);
-        toast.success("Success, redirecting to Conversation", { id: "1" });
+        toast.success("Success, entered Conversation", { id: "1" });
       })
       .catch((err) => toast.error("Error, " + err.message, { id: "1" }))
       .finally(() => setIsLoading(false));

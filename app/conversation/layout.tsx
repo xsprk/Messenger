@@ -16,7 +16,7 @@ const ConversationLayout = async ({ children }: Props) => {
       <Sidebar>
         <ConversationList InitialConversations={conversations} />
       </Sidebar>
-      {children}
+      <div className="lg:pl-80">{children}</div>
     </div>
   );
 };

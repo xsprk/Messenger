@@ -14,10 +14,10 @@ const ConversationPage = (props: Props) => {
     <div
       className={clsx(
         `
-      lg:pl-80 lg:block 
+      lg:block 
 
       `,
-        isOpen ? "block" : "hidden"
+        isOpen ? "hidden" : "block"
       )}
     >
       <EmptyPanel />
