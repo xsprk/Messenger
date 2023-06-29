@@ -1,9 +1,7 @@
-import React, { ReactNode } from "react";
-import RouteSidebar from "./RouteSidebar";
-import MobileFooter from "./MobileFooter";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import getUsers from "@/app/actions/getUsers";
-import UserList from "@/app/users/components/UserList";
+import { ReactNode } from "react";
+import MobileFooter from "./MobileFooter";
+import RouteSidebar from "./RouteSidebar";
 
 type Props = {
   children: ReactNode;

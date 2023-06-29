@@ -61,7 +61,7 @@ const ConversationBox = ({ conversation, selected }: Props) => {
       <Avatar user={otherUsers[0]} />
       <div className="w-full">
         <div className="w-full flex justify-between items-center">
-          <p>{conversation.name || otherUsers[0].name}</p>
+          <p>{conversation.name || otherUsers[0]?.name || ""}</p>
           {lastMessage?.createdAt && (
             <p className="text-slate-600 font-light text-sm  mt-0.5">
               {format(new Date(lastMessage.createdAt), "p")}

@@ -1,6 +1,8 @@
 import React from "react";
 import getSession from "./getSession";
 
+import prisma from "@/prisma/prismadb";
+
 const getUsers = async () => {
   const session = await getSession();
 
