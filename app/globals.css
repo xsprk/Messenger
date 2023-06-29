@@ -13,7 +13,7 @@
     @apply hover:ring-2
     hover:ring-offset-4
     hover:ring-offset-slate-300
-    hover:ring-blue-500/70
+    hover:ring-blue-400
     hover:text-blue-600;
   }
 }

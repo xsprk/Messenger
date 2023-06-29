@@ -45,8 +45,8 @@ const ChatForm = (props: Props) => {
   gap-4
   "
     >
-      <div className="p-1 border-slate-200">
-        <HiPhoto size={36} className="text-blue-500" />
+      <div className=" p-1 hover-ring rounded-full   transition cursor-pointer ring-offset-6 ">
+        <HiPhoto size={36} className="text-blue-500 " />
       </div>
       <form
         onSubmit={handleSubmit(submitHandler)}
