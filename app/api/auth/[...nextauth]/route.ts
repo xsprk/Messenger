@@ -9,6 +9,6 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/prisma/prismadb";
 import { authOptions } from "@/app/utils/authOptions";
 
-const authHandler = NextAuth(authOptions);
+const handler = NextAuth(authOptions);
 
-export { authHandler as GET, authHandler as POST };
+export { handler as GET, handler as POST };
