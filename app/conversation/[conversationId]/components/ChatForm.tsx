@@ -65,9 +65,7 @@ const ChatForm = (props: Props) => {
           className="rounded-full
         p-1 pr-2
         bg-slate-300
-        hover:outline-blue-400
-        hover:outline-offset-2
-        hover:bg-opacity-90
+        hover-ring
         transition
         cursor-pointer"
         >

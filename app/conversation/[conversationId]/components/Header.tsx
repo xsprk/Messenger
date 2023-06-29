@@ -37,7 +37,9 @@ const Header = ({ conversation }: Props) => {
     >
       <div className="flex gap-3 items-center">
         <Link
-          className="lg:hidden block text-blue-500 hover:text-blue-600 transition cursor-pointer "
+          className="lg:hidden block text-blue-500 rounded-full
+        
+          hover-ring hover:ring-offset-slate-400 transition cursor-pointer "
           href="/conversation"
         >
           <HiChevronLeft size={32} />
@@ -51,7 +53,11 @@ const Header = ({ conversation }: Props) => {
       <HiEllipsisHorizontal
         size={32}
         onClick={() => {}}
-        className="text-blue-500 cursor-pointer hover:text-sky-600 transition"
+        className="text-blue-500 cursor-pointer 
+        rounded-full
+        hover:text-blue-600 
+        hover-ring hover:ring-offset-slate-400
+        transition"
       />
     </div>
   );

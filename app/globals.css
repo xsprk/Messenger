@@ -9,4 +9,11 @@
   .blue-focus-ring {
     @apply focus:outline-offset-2   focus:outline-blue-400;
   }
+  .hover-ring {
+    @apply hover:ring-2
+    hover:ring-offset-4
+    hover:ring-offset-slate-300
+    hover:ring-blue-500/70
+    hover:text-blue-600;
+  }
 }
