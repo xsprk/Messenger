@@ -12,14 +12,14 @@ type Props = {
 const ConversationIdPage = async ({ params }: { params: Props }) => {
   const conversation = await getConversationById(params.conversationId);
 
-  const messages = await getMessages(params.conversationId);
+  const messages = (await getMessages(params.conversationId)) || [];
 
   if (!conversation) return <EmptyPanel />;
 
   return (
     <div className="h-full flex flex-col min-h-screen">
       <Header conversation={conversation} />
-      <Body />
+      <Body initialMessages={messages} />
       <ChatForm />
     </div>
   );

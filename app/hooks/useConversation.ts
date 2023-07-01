@@ -12,7 +12,7 @@ const useConversation = () => {
 
   const isOpen = useMemo(() => !!conversationId, [conversationId]);
 
-  return useMemo(() => ({ isOpen, conversationId }), [isOpen]);
+  return useMemo(() => ({ isOpen, conversationId }), [isOpen, conversationId]);
 };
 
 export default useConversation;

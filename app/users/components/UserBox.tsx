@@ -28,7 +28,7 @@ const UserBox = ({ user }: Props) => {
       })
       .catch((err) => toast.error("Error, " + err.message, { id: "1" }))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [user.id]);
 
   return (
     <div
