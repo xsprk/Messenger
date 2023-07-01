@@ -15,7 +15,7 @@ const UserList = ({ users }: Props) => {
   lg:left-20 lg:w-60 overflow-y-auto border-r border-slate-200"
     >
       <div className="p-5 flex flex-col">
-        <p className="mt-2 text-2xl font-bold">People</p>
+        <p className="my-2 text-2xl font-bold">People</p>
         {users.map((user) => (
           <UserBox key={user.id} user={user}></UserBox>
         ))}

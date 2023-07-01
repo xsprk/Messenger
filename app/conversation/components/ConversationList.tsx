@@ -31,7 +31,7 @@ const ConversationList = ({ InitialConversations = [] }: Props) => {
       )}
     >
       <div className="p-5 flex flex-col">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center mb-2">
           <p className="text-2xl font-bold ">Chats</p>
           <div className="p-2 rounded-md cursor-pointer hover:bg-slate-200 transition">
             <MdOutlineGroupAdd size={32} />

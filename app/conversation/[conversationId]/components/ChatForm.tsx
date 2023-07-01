@@ -6,6 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { FaPaperPlane } from "react-icons/fa";
 import { HiPhoto } from "react-icons/hi2";
 import MessageInput from "./MessageInput";
+import { CldUploadButton } from "next-cloudinary";
 
 type Props = {};
 
@@ -32,6 +33,13 @@ const ChatForm = (props: Props) => {
     setValue("message", "", { shouldValidate: true });
   };
 
+  const handleUpload = (result: any) => {
+    axios.post("/api/messages", {
+      image: result.info.secure_url,
+      conversationId: conversationId,
+    });
+  };
+
   return (
     <div
       className="
@@ -46,8 +54,15 @@ const ChatForm = (props: Props) => {
   "
     >
       <div className=" p-1 hover-ring rounded-full   transition cursor-pointer ring-offset-6 ">
-        <HiPhoto size={36} className="text-blue-500 " />
+        <CldUploadButton
+          options={{ maxFiles: 1 }}
+          onUpload={handleUpload}
+          uploadPreset={"og1qjifw"}
+        >
+          <HiPhoto size={36} className="text-blue-500 " />
+        </CldUploadButton>
       </div>
+
       <form
         onSubmit={handleSubmit(submitHandler)}
         className="flex items-center

@@ -13,7 +13,7 @@ type Props = {
 const RouteSidebar = ({ currentUser }: Props) => {
   const routes = useRoutes();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(currentUser);
+  /* console.log(currentUser); */
 
   return (
     <div
