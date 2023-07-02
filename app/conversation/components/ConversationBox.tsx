@@ -37,7 +37,9 @@ const ConversationBox = ({ conversation, selected }: Props) => {
 
     const SeenArray = lastMessage.seen || [];
 
-    return !!SeenArray.filter((user) => user.email === currentUserEmail);
+    return (
+      SeenArray.filter((user) => user.email === currentUserEmail).length !== 0
+    );
   }, [currentUserEmail, lastMessage]);
 
   const lastMessageText = useMemo(() => {
@@ -70,8 +72,8 @@ const ConversationBox = ({ conversation, selected }: Props) => {
         </div>
         <p
           className={clsx(
-            "text-slate-800 font-light text-sm w-full truncate",
-            hasSeen && "text-slate-500"
+            "text-sm truncate ",
+            hasSeen ? "text-slate-500 font-light" : "text-slate-800 font-bold"
           )}
         >
           {lastMessageText}
