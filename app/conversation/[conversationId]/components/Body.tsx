@@ -28,7 +28,7 @@ const Body = ({ initialMessages }: Props) => {
           message={message}
         />
       ))}
-      <div ref={bottomRef} className="pt-24" />
+      <div ref={bottomRef} className="pt-6" />
     </div>
   );
 };

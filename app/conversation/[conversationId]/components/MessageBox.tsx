@@ -32,7 +32,7 @@ const MessageBox = ({ message, isLast }: Props) => {
   const messageBodyClassName = clsx(
     "w-fit overflow-hidden text-md",
     isOwn ? "bg-blue-500 text-slate-100" : "bg-slate-200",
-    message.image ? "rounded-md p-0" : "rounded-full py-1 px-3"
+    message.image ? "rounded-md p-0" : "rounded-md py-1 px-3"
   );
 
   return (
@@ -60,6 +60,12 @@ const MessageBox = ({ message, isLast }: Props) => {
             <p>{message.body}</p>
           )}
         </div>
+        {isLast && isOwn && seenList.length > 0 && (
+          <div className="text-sm text-slate-600 ">
+            <span className="text-xs ">{"Seen by "}</span>
+            {`${seenList}`}
+          </div>
+        )}
       </div>
     </div>
   );
