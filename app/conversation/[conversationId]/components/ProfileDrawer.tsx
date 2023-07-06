@@ -165,7 +165,9 @@ const ProfileDrawer = ({ conversation, isOpen, onClose }: Props) => {
                                 "
                   >
                     {conversation.users.map((user) => (
-                      <p className="text-center">{user.email}</p>
+                      <p className="text-center" key={user.id}>
+                        {user.email}
+                      </p>
                     ))}
                   </dd>
                 </>
