@@ -86,91 +86,93 @@ const ProfileDrawer = ({ conversation, isOpen, onClose }: Props) => {
             </div>
 
             <div className="flex justify-center  items-center ">
-              <p className="-mt-10 text-md text-slate-700">
-                Delete Conversation
-              </p>
+              <p className="-mt-10  text-slate-700">Delete Conversation</p>
             </div>
 
-            <dl className="text-center">
+            <dl className="text-center ">
               {!conversation.isGroup && (
-                <>
-                  <dt
-                    className="
+                <div className="space-y-10">
+                  <div>
+                    <dt
+                      className="
                                   text-sm 
-                                  font-medium 
                                   text-slate-600 
                                 "
-                  >
-                    Email
-                  </dt>
-                  <dd
-                    className="
+                    >
+                      Email
+                    </dt>
+                    <dd
+                      className="
+                      
                                   text-slate-800 
                                   mb-4
                                 "
-                  >
-                    {otherUser.email}
-                  </dd>
-                  <dt
-                    className="
+                    >
+                      {otherUser.email}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="
                                     text-sm 
-                                    font-medium 
                                     text-slate-600 
                                   "
-                  >
-                    Joined
-                  </dt>
-                  <dd
-                    className="
+                    >
+                      Joined
+                    </dt>
+                    <dd
+                      className="
                                     text-6
                                     text-slate-800 
                                   "
-                  >
-                    <time dateTime={joinedDate}>{joinedDate}</time>
-                  </dd>
-                </>
+                    >
+                      <time dateTime={joinedDate}>{joinedDate}</time>
+                    </dd>
+                  </div>
+                </div>
               )}
               {conversation.isGroup && (
-                <>
-                  <dt
-                    className="
+                <div className="space-y-10">
+                  <div>
+                    <dt
+                      className="
                                 text-sm 
-                                font-medium 
                                 text-slate-600 
                               "
-                  >
-                    Created
-                  </dt>
-                  <dd
-                    className="
+                    >
+                      Created
+                    </dt>
+                    <dd
+                      className="
                                 text-6
                                 text-slate-800 
                               "
-                  >
-                    <time dateTime={createDate}>{createDate}</time>
-                  </dd>
-                  <dt
-                    className="
+                    >
+                      <time dateTime={createDate}>{createDate}</time>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt
+                      className="
                                   text-sm 
-                                  font-medium 
                                   text-slate-600 
                                 "
-                  >
-                    Emails
-                  </dt>
-                  <dd
-                    className="
-                                  text-md 
+                    >
+                      Emails
+                    </dt>
+                    <dd
+                      className="
                                   text-slate-800 
                                 "
-                  >
-                    {conversation.users.map((user) => (
-                      <p className="text-center" key={user.id}>
-                        {user.email}
-                      </p>
-                    ))}
-                  </dd>
-                </>
+                    >
+                      {conversation.users.map((user) => (
+                        <p className="text-center" key={user.id}>
+                          {user.email}
+                        </p>
+                      ))}
+                    </dd>
+                  </div>
+                </div>
               )}
             </dl>
           </Dialog.Panel>
