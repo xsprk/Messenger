@@ -27,7 +27,7 @@ const RouteItem = ({
        group  flex gap-x-3 rounded-md p-2 text-sm leading-6
        font-semibold text-slate-700 hover:text-slate-800 hover:bg-slate-200
       `,
-          active && "bg-slate-200 text-slate-800"
+          active && "bg-slate-200 z-50"
         )}
       >
         <Icon className="h-8 w-8 shrink-0" />

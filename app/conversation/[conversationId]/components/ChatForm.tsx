@@ -53,7 +53,7 @@ const ChatForm = (props: Props) => {
   gap-4
   "
     >
-      <div className=" p-1 hover-ring rounded-full   transition cursor-pointer ring-offset-6 ">
+      <div className=" p-1 hover-ring  rounded-full   transition cursor-pointer ring-offset-6 ">
         <CldUploadButton
           options={{ maxFiles: 1 }}
           onUpload={handleUpload}

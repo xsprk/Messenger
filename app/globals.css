@@ -7,7 +7,7 @@
     @apply bg-blue-500 shadow-sm ring-1 ring-inset ring-slate-400 hover:bg-opacity-90  rounded-md text-slate-100;
   }
   .blue-focus-ring {
-    @apply focus:outline-offset-2   focus:outline-blue-400;
+    @apply focus:ring-offset-4 focus:ring-offset-slate-300 focus:ring-blue-400 focus:ring-2;
   }
   .hover-ring {
     @apply hover:ring-2
