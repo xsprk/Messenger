@@ -89,7 +89,7 @@ const Modal = ({ isOpen, onClose, children }: Props) => {
                 >
                   <button
                     type="button"
-                    className="rounded-md bg-slate-300  text-slate-800 hover-ring focus:outline-none blue-focus-ring"
+                    className="rounded-md bg-slate-200 hover:ring-offset-slate-200 focus:ring-offset-slate-200  text-slate-800 hover-ring focus:outline-none blue-focus-ring"
                     onClick={onClose}
                   >
                     <span className="sr-only">Close panel</span>

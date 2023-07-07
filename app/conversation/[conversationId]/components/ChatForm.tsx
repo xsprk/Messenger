@@ -33,7 +33,7 @@ const ChatForm = (props: Props) => {
     setValue("message", "", { shouldValidate: true });
   };
 
-  const handleUpload = (result: any) => {
+  const handleUploadImage = (result: any) => {
     axios.post("/api/messages", {
       image: result.info.secure_url,
       conversationId: conversationId,
@@ -56,7 +56,7 @@ const ChatForm = (props: Props) => {
       <div className=" p-1 hover-ring  rounded-full   transition cursor-pointer ring-offset-6 ">
         <CldUploadButton
           options={{ maxFiles: 1 }}
-          onUpload={handleUpload}
+          onUpload={handleUploadImage}
           uploadPreset={"og1qjifw"}
         >
           <HiPhoto size={36} className="text-blue-500 " />
