@@ -39,11 +39,11 @@ export async function DELETE(request: Request, { params }: { params: Params }) {
       },
     });
 
-    existingConversation.users.forEach((user) => {
-      /* if (user.email) {
+    /*existingConversation.users.forEach((user) => {
+       if (user.email) {
         pusherServer.trigger(user.email, 'conversation:remove', existingConversation);
-      } */
-    });
+      } 
+    });*/
 
     return NextResponse.json(deletedConversation);
   } catch (error) {
