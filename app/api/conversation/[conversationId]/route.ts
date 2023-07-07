@@ -8,13 +8,13 @@ interface Params {
   conversationId?: string;
 }
 
-export async function DELETE({ params }: { params: Params }) {
+export async function DELETE(request: Request, { params }: { params: Params }) {
   try {
     const { conversationId } = params;
     const currentUser = await getCurrentUser();
 
     if (!currentUser?.id) {
-      return NextResponse.json(null);
+      return NextResponse.json("Unauthorized", { status: 401 });
     }
 
     const existingConversation = await prisma.conversation.findUnique({
@@ -47,6 +47,7 @@ export async function DELETE({ params }: { params: Params }) {
 
     return NextResponse.json(deletedConversation);
   } catch (error) {
-    return NextResponse.json(null);
+    console.log(error, "Error, /conversationId, delete");
+    return NextResponse.json("Internal Error", { status: 500 });
   }
 }
