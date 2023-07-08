@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import React, { Fragment, useMemo, useState } from "react";
 import { IoClose, IoTrash } from "react-icons/io5";
 import ConfirmationModal from "./ConfirmationModal";
+import AvatarGroup from "@/app/components/AvatarGroup";
 
 type Props = {
   conversation: Conversation & { users: User[] };
@@ -78,7 +79,13 @@ const ProfileDrawer = ({ conversation, isOpen, onClose }: Props) => {
                 </button>
               </div>
               <div className="flex justify-center">
-                <Avatar user={otherUser} />
+                <div className="overflow-visible">
+                  {conversation.isGroup ? (
+                    <AvatarGroup users={otherUsers} />
+                  ) : (
+                    <Avatar user={otherUsers[0]} />
+                  )}
+                </div>
               </div>
 
               <div className="block mx-auto text-center">
@@ -125,11 +132,11 @@ const ProfileDrawer = ({ conversation, isOpen, onClose }: Props) => {
                       </dd>
                     </div>
                     <div>
-                      <dt className=" text-sm   text-slate-600 ">Emails</dt>
+                      <dt className=" text-sm   text-slate-600 ">Members</dt>
                       <dd className="  text-slate-800 ">
                         {conversation.users.map((user) => (
                           <p className="text-center" key={user.id}>
-                            {user.email}
+                            {user.name}
                           </p>
                         ))}
                       </dd>

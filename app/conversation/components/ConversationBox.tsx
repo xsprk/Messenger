@@ -1,6 +1,7 @@
 "use client";
 
 import Avatar from "@/app/components/Avatar";
+import AvatarGroup from "@/app/components/AvatarGroup";
 import useOtherUsers from "@/app/hooks/useOtherUsers";
 import { ExtendedCoversationType } from "@/types";
 import clsx from "clsx";
@@ -60,7 +61,13 @@ const ConversationBox = ({ conversation, selected }: Props) => {
         selected && "bg-slate-200"
       )}
     >
-      <Avatar user={otherUsers[0]} />
+      <div className="overflow-visible">
+        {conversation.isGroup ? (
+          <AvatarGroup users={otherUsers} />
+        ) : (
+          <Avatar user={otherUsers[0]} />
+        )}
+      </div>
       <div className="w-full">
         <div className="w-full flex justify-between items-center">
           <p>{conversation.name || otherUsers[0]?.name || ""}</p>
