@@ -3,8 +3,9 @@ import { ExtendedMessageType } from "@/types";
 import clsx from "clsx";
 import { format } from "date-fns";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import ImageModal from "./ImageModal";
 
 type Props = {
   isLast?: boolean;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const MessageBox = ({ message, isLast }: Props) => {
+  const [imageModalOpen, setImageModalOpen] = useState(false);
   const session = useSession();
   const isOwn = session.data?.user?.email === message.sender.email;
 
@@ -49,13 +51,21 @@ const MessageBox = ({ message, isLast }: Props) => {
         </div>
         <div id="messageBody" className={messageBodyClassName}>
           {message.image ? (
-            <Image
-              alt="image message"
-              height={"288"}
-              width={"288"}
-              src={message.image}
-              className="object-cover cursor-pointer hover:scale-110 transition translate"
-            />
+            <>
+              <ImageModal
+                src={message.image}
+                isOpen={imageModalOpen}
+                onClose={() => setImageModalOpen(false)}
+              />
+              <Image
+                alt="image message"
+                onClick={() => setImageModalOpen(true)}
+                height={"288"}
+                width={"288"}
+                src={message.image}
+                className="object-cover cursor-pointer hover:scale-110 transition translate"
+              />
+            </>
           ) : (
             <p>{message.body}</p>
           )}
