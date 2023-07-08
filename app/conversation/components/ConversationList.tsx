@@ -26,11 +26,14 @@ const ConversationList = ({ InitialConversations = [], users }: Props) => {
   return (
     <aside
       className={clsx(
-        `hidden
+        `
+        w-full
         fixed left-0 
         pb-20
         inset-y-0
-        lg:block lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto border-r border-slate-200 
+        px-4
+        lg:px-0
+        lg:block lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto lg:border-r border-slate-200 
       `,
         !isOpen && "block "
       )}

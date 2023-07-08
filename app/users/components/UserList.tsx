@@ -11,7 +11,7 @@ type Props = {
 const UserList = ({ users }: Props) => {
   return (
     <aside
-      className="fixed hidden left-0 w-full lg:block inset-y-0 pb-20 lg:pb-0
+      className="fixed  left-0 w-full lg:block inset-y-0 pb-20 lg:pb-0
   lg:left-20 lg:w-60 overflow-y-auto border-r border-slate-200"
     >
       <div className="p-5 flex flex-col">

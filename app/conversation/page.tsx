@@ -17,7 +17,7 @@ const ConversationPage = (props: Props) => {
       lg:block 
 
       `,
-        isOpen ? "hidden" : "block"
+        isOpen ? "block" : "hidden"
       )}
     >
       <EmptyPanel />
