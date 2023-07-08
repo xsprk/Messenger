@@ -10,7 +10,7 @@ export default function SigninPage() {
       <div
         id="container"
         className=" max-w-md text-center"
-        style={{ marginTop: "-12svh" }}
+        style={{ marginTop: "-15svh" }}
       >
         <Image
           alt="logo"
@@ -23,6 +23,20 @@ export default function SigninPage() {
           Sign in to your account
         </h2>{" "}
         <AuthForm />
+        <footer className=" flex flex-row justify-center">
+          <ul className="hidden fixed bottom-20 lg:flex lg:flex-col mt-auto  mx-auto  justify-end items-center text-gray-800 space-y-1 px-7 py-5 rounded-xl w-160">
+            <li>Next.js Rest API + NextAuth + Typescript</li>
+            <li>Prisma + MongoDB + Cloudinary</li>
+            <li>Pusher</li>
+            <li>HeadlessUI + Tailwind</li>
+            <li>
+              Learned from Antonio;
+              <span className=" whitespace-nowrap pl-2">
+                Powered by greybluesea
+              </span>
+            </li>
+          </ul>
+        </footer>
       </div>
     </div>
   );
