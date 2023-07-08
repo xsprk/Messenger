@@ -52,11 +52,6 @@ const MessageBox = ({ message, isLast }: Props) => {
         <div id="messageBody" className={messageBodyClassName}>
           {message.image ? (
             <>
-              <ImageModal
-                src={message.image}
-                isOpen={imageModalOpen}
-                onClose={() => setImageModalOpen(false)}
-              />
               <Image
                 alt="image message"
                 onClick={() => setImageModalOpen(true)}
@@ -64,6 +59,11 @@ const MessageBox = ({ message, isLast }: Props) => {
                 width={"288"}
                 src={message.image}
                 className="object-cover cursor-pointer hover:scale-110 transition translate"
+              />
+              <ImageModal
+                src={message.image}
+                isOpen={imageModalOpen}
+                onClose={() => setImageModalOpen(false)}
               />
             </>
           ) : (
