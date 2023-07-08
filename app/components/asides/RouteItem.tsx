@@ -4,6 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import React from "react";
 import { RouteItem } from "@/types";
+import toast from "react-hot-toast";
 
 type Props = {
   route: RouteItem;
@@ -16,6 +17,10 @@ const RouteItem = ({
     if (onClick) {
       return onClick();
     }
+    toast.loading("Redirecting to " + label, { id: "1" });
+    setTimeout(() => {
+      toast.success("Success, redirected to " + label, { id: "1" });
+    }, 700);
   };
 
   return (

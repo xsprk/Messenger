@@ -46,7 +46,7 @@ const Header = ({ conversation }: Props) => {
         <div className="flex gap-3 items-center">
           <Link
             className="lg:hidden block text-blue-500 rounded-full
-        
+            bg-slate-400
           hover-ring hover:ring-offset-slate-400 transition cursor-pointer "
             href="/conversation"
           >

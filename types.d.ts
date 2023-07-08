@@ -39,3 +39,5 @@ type ExtendedCoversationType = Conversation & {
   users: User[];
   messages: ExtendedMessageType[];
 };
+
+type Option = { [string]: any };
