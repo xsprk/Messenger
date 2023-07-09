@@ -17,7 +17,7 @@ const ConversationIdPage = async ({ params }: { params: Props }) => {
   if (!conversation) return <EmptyPanel />;
 
   return (
-    <div className="h-full flex flex-col min-h-screen">
+    <div className="h-full flex flex-col min-h-screen z-[55] cursor-auto">
       <Header conversation={conversation} />
       <Body initialMessages={messages} />
       <ChatForm />

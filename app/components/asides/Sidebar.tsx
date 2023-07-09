@@ -13,9 +13,9 @@ const Sidebar = async ({ children }: Props) => {
   return (
     <>
       <RouteSidebar currentUser={currentUser!} />
-      <main className="absolute w-full lg:pl-20 left-0 top-0 h-full lg:w-80  lg:bg-slate-300">
-        {children}
-      </main>
+
+      {children}
+
       <MobileFooter />
     </>
   );
