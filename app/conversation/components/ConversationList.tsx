@@ -33,9 +33,9 @@ const ConversationList = ({ InitialConversations = [], users }: Props) => {
         inset-y-0
         px-4
         lg:px-0
-        lg:block lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto lg:border-r border-slate-200 
+        lg:pb-0 lg:left-20 lg:w-60 overflow-y-auto lg:border-r border-slate-200 
       `,
-        !isOpen && "block "
+        isOpen ? "hidden  lg:block" : "block "
       )}
     >
       <GroupChatModal

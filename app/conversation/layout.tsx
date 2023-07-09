@@ -7,6 +7,8 @@ import { Message, User } from "@prisma/client";
 import getUsers from "../actions/getUsers";
 import { useSession } from "next-auth/react";
 import getCurrentUser from "../actions/getCurrentUser";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 type Props = {
   children: ReactNode;
@@ -21,6 +23,7 @@ const ConversationLayout = async ({ children }: Props) => {
       <Sidebar>
         <ConversationList users={users} InitialConversations={conversations} />
       </Sidebar>
+
       <div className="lg:pl-80">{children}</div>
     </div>
   );

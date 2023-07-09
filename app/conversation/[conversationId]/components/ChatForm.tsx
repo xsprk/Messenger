@@ -26,7 +26,7 @@ const ChatForm = (props: Props) => {
   });
 
   const submitHandler: SubmitHandler<FieldValues> = (data) => {
-    axios.post("/api/messages", {
+    axios.post("/api/message", {
       ...data,
       conversationId,
     });
@@ -34,7 +34,7 @@ const ChatForm = (props: Props) => {
   };
 
   const handleUploadImage = (result: any) => {
-    axios.post("/api/messages", {
+    axios.post("/api/message", {
       image: result.info.secure_url,
       conversationId: conversationId,
     });
