@@ -60,7 +60,7 @@ export async function POST(request: Request, { params }: { params: Params }) {
 
     await pusherServer.trigger(currentUser.email, "message:seen", {
       id: conversationId,
-      message: [updatedLastMessageForSeenArray],
+      messages: [updatedLastMessageForSeenArray],
     });
 
     await pusherServer.trigger(

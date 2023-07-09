@@ -2,7 +2,7 @@
 
 import getConversations from "@/app/actions/getConversations";
 import useConversation from "@/app/hooks/useConversation";
-import { ExtendedCoversationType } from "@/types";
+import { ExtendedCoversationType, ExtendedMessageType } from "@/types";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
@@ -19,7 +19,10 @@ type Props = {
   users: User[];
 };
 
-const ConversationList = ({ InitialConversations = [], users }: Props) => {
+const ConversationList = ({
+  InitialConversations = [] as ExtendedCoversationType[],
+  users,
+}: Props) => {
   const [conversations, setConversations] = useState(InitialConversations);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,8 +46,26 @@ const ConversationList = ({ InitialConversations = [], users }: Props) => {
       });
     };
 
+    const handleNewMessage = (
+      conversationWithNewMessage: ExtendedCoversationType
+    ) => {
+      setConversations((current) =>
+        current.map((currentConversation) => {
+          if (currentConversation.id === conversationWithNewMessage.id) {
+            return {
+              ...currentConversation,
+              messages: conversationWithNewMessage.messages,
+            };
+          }
+
+          return currentConversation;
+        })
+      );
+    };
+
     pusherClient.subscribe(currentUserEmail);
     pusherClient.bind("conversation:new", handleNewConversation);
+    pusherClient.bind("conversation:newMessage", handleNewMessage);
 
     return () => {
       pusherClient.unsubscribe(currentUserEmail);
