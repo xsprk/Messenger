@@ -1,22 +1,17 @@
 "use client";
 
-import getConversations from "@/app/actions/getConversations";
 import useConversation from "@/app/hooks/useConversation";
-import {
-  ExtendedCoversationType,
-  ExtendedMessageType,
-  NewMessageViaPusher,
-} from "@/types";
+import { pusherClient } from "@/pusher/pusher";
+import { ExtendedCoversationType, NewMessageViaPusher } from "@/types";
+import { User } from "@prisma/client";
 import clsx from "clsx";
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useMemo, useState } from "react";
+import { find } from "lodash";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { MdOutlineGroupAdd } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
 import GroupChatModal from "./GroupChatModal";
-import { User } from "@prisma/client";
-import { useSession } from "next-auth/react";
-import { pusherClient } from "@/pusher/pusher";
-import { find } from "lodash";
 
 type Props = {
   InitialConversations: ExtendedCoversationType[];
@@ -72,6 +67,8 @@ const ConversationList = ({
           (eachConversation) => eachConversation.id !== conversationToDelete.id
         )
       );
+      if (conversationId === conversationToDelete.id)
+        router.push("/conversation");
     };
 
     pusherClient.subscribe(currentUserEmail);
@@ -85,7 +82,7 @@ const ConversationList = ({
       pusherClient.unbind("conversation:newMessage", handleNewMessage);
       pusherClient.unbind("conversation:delete", handleDeleteConversation);
     };
-  }, [currentUserEmail]);
+  }, [currentUserEmail, conversationId]);
 
   return (
     <aside
