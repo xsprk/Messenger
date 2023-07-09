@@ -72,6 +72,7 @@ const ConversationList = ({
     return () => {
       pusherClient.unsubscribe(currentUserEmail);
       pusherClient.unbind("conversation:new", handleNewConversation);
+      pusherClient.unbind("conversation:newMessage", handleNewMessage);
     };
   }, [currentUserEmail]);
 
