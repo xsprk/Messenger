@@ -57,7 +57,7 @@ const Body = ({ initialMessages }: Props) => {
   }, [conversationId]);
 
   return (
-    <div className="flex-1 overflow-y-auto pt-2">
+    <div className="flex-1 overflow-y-auto pt-6">
       {messages.map((message, i) => (
         <MessageBox
           key={message.id}
