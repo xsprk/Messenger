@@ -7,6 +7,7 @@ import MessageBox from "./MessageBox";
 import axios from "axios";
 import { pusherClient } from "@/pusher/pusher";
 import { find } from "lodash";
+import ChatForm from "./ChatForm";
 
 type Props = {
   initialMessages: ExtendedMessageType[];
@@ -56,7 +57,7 @@ const Body = ({ initialMessages }: Props) => {
   }, [conversationId]);
 
   return (
-    <div className="flex-1 overflow-y-auto py-2">
+    <div className="flex-1 overflow-y-auto pt-2">
       {messages.map((message, i) => (
         <MessageBox
           key={message.id}
@@ -64,7 +65,8 @@ const Body = ({ initialMessages }: Props) => {
           message={message}
         />
       ))}
-      <div ref={bottomRef} className="pt-2 lg:pt-6" />
+
+      <div className="py-14 lg:py-16 " ref={bottomRef}></div>
     </div>
   );
 };
