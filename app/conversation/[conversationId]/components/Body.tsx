@@ -66,7 +66,7 @@ const Body = ({ initialMessages }: Props) => {
         />
       ))}
 
-      <div className="py-12 lg:py-14 " ref={bottomRef}></div>
+      <div className="py-14 " ref={bottomRef}></div>
     </div>
   );
 };
