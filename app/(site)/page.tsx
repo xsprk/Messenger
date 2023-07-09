@@ -27,7 +27,7 @@ export default function SigninPage() {
           <ul className="hidden fixed bottom-20 lg:flex lg:flex-col mt-auto  mx-auto  justify-end items-center text-gray-800 space-y-1 px-7 py-5 rounded-xl w-160">
             <li>Next.js Rest API + NextAuth + Typescript</li>
             <li>Prisma + MongoDB + Cloudinary</li>
-            <li>Pusher</li>
+            <li>Pusher + Zustand</li>
             <li>HeadlessUI + Tailwind</li>
             <li>
               Learned from Antonio;
