@@ -25,7 +25,7 @@ const Body = ({ initialMessages }: Props) => {
     pusherClient.subscribe(conversationId);
     bottomRef?.current?.scrollIntoView();
 
-    const messageHandler = (message: ExtendedMessageType) => {
+    const messageNewHandler = (message: ExtendedMessageType) => {
       setMessages((current) => {
         if (find(current, { id: message.id })) {
           return current;
@@ -37,11 +37,21 @@ const Body = ({ initialMessages }: Props) => {
       axios.post(`/api/conversation/${conversationId}/seen`);
     };
 
-    pusherClient.bind("message:new", messageHandler);
+    const messageSeenHandler = (messageSeen: ExtendedMessageType) => {
+      setMessages((current) =>
+        current.map((eachMessage) => {
+          return eachMessage.id === messageSeen.id ? messageSeen : eachMessage;
+        })
+      );
+    };
+
+    pusherClient.bind("message:new", messageNewHandler);
+    pusherClient.bind("message:seen", messageSeenHandler);
 
     return () => {
       pusherClient.unsubscribe(conversationId);
-      pusherClient.unbind("message:new", messageHandler);
+      pusherClient.unbind("message:new", messageNewHandler);
+      pusherClient.unbind("message:seen", messageSeenHandler);
     };
   }, [conversationId]);
 
@@ -54,7 +64,7 @@ const Body = ({ initialMessages }: Props) => {
           message={message}
         />
       ))}
-      <div ref={bottomRef} className="pt-6" />
+      <div ref={bottomRef} className="pt-2 lg:pt-6" />
     </div>
   );
 };

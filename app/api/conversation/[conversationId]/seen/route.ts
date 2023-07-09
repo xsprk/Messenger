@@ -39,6 +39,10 @@ export async function POST(request: Request, { params }: { params: Params }) {
 
     const lastMessage = conversation.messages[conversation.messages.length - 1];
 
+    if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
+      return NextResponse.json(conversation);
+    }
+
     const updatedLastMessageForSeenArray = await prisma.message.update({
       where: { id: lastMessage.id },
       include: {
@@ -54,14 +58,18 @@ export async function POST(request: Request, { params }: { params: Params }) {
       },
     });
 
-    await pusherServer.trigger(currentUser.email, "conversation:seen", {
+    await pusherServer.trigger(currentUser.email, "message:seen", {
       id: conversationId,
       message: [updatedLastMessageForSeenArray],
     });
 
-    /* await pusherServer.trigger(lastMessage.id, 'lastMessage:seen', currentUser) */
+    await pusherServer.trigger(
+      conversationId!,
+      "message:seen",
+      updatedLastMessageForSeenArray
+    );
 
-    return NextResponse.json(updatedLastMessageForSeenArray);
+    return NextResponse.json("Success", { status: 200 });
   } catch (err) {
     console.log(err, "ERROR_MESSAGES_SEEN");
     return new NextResponse("Internal Error", { status: 500 });
