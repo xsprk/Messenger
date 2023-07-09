@@ -5,6 +5,8 @@ import { ExtendedMessageType } from "@/types";
 import React, { useEffect, useRef, useState } from "react";
 import MessageBox from "./MessageBox";
 import axios from "axios";
+import { pusherClient } from "@/pusher/pusher";
+import { find } from "lodash";
 
 type Props = {
   initialMessages: ExtendedMessageType[];
@@ -17,6 +19,30 @@ const Body = ({ initialMessages }: Props) => {
 
   useEffect(() => {
     axios.post(`/api/conversation/${conversationId}/seen`);
+  }, [conversationId]);
+
+  useEffect(() => {
+    pusherClient.subscribe(conversationId);
+    bottomRef?.current?.scrollIntoView();
+
+    const messageHandler = (message: ExtendedMessageType) => {
+      setMessages((current) => {
+        if (find(current, { id: message.id })) {
+          return current;
+        }
+        return [...current, message];
+      });
+
+      bottomRef?.current?.scrollIntoView();
+      axios.post(`/api/conversation/${conversationId}/seen`);
+    };
+
+    pusherClient.bind("message:new", messageHandler);
+
+    return () => {
+      pusherClient.unsubscribe(conversationId);
+      pusherClient.unbind("message:new", messageHandler);
+    };
   }, [conversationId]);
 
   return (
