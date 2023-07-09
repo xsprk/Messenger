@@ -69,6 +69,7 @@ const ConversationList = ({
       );
       if (conversationId === conversationToDelete.id)
         router.push("/conversation");
+      router.refresh();
     };
 
     pusherClient.subscribe(currentUserEmail);
