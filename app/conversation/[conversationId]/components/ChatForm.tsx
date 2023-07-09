@@ -53,15 +53,15 @@ const ChatForm = (props: Props) => {
   gap-4
   "
     >
-      <div className=" p-1 hover-ring  rounded-full  bg-slate-300  transition cursor-pointer ring-offset-6 ">
-        <CldUploadButton
-          options={{ maxFiles: 1 }}
-          onUpload={handleUploadImage}
-          uploadPreset={"og1qjifw"}
-        >
-          <HiPhoto size={36} className="text-blue-500 " />
-        </CldUploadButton>
-      </div>
+      <CldUploadButton
+        options={{ maxFiles: 1 }}
+        onUpload={handleUploadImage}
+        uploadPreset={"og1qjifw"}
+      >
+        <div className=" p-1 hover-ring overflow-visible  rounded-full  bg-slate-300  transition cursor-pointer">
+          <HiPhoto size={36} className="text-blue-500  " />
+        </div>
+      </CldUploadButton>
 
       <form
         onSubmit={handleSubmit(submitHandler)}
