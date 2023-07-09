@@ -4,15 +4,18 @@ import getConversations from "@/app/actions/getConversations";
 import useConversation from "@/app/hooks/useConversation";
 import { ExtendedCoversationType } from "@/types";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useMemo, useState } from "react";
 import { MdOutlineGroupAdd } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
 import GroupChatModal from "./GroupChatModal";
 import { User } from "@prisma/client";
+import { useSession } from "next-auth/react";
+import { pusherClient } from "@/pusher/pusher";
+import { find } from "lodash";
 
 type Props = {
-  InitialConversations?: ExtendedCoversationType[];
+  InitialConversations: ExtendedCoversationType[];
   users: User[];
 };
 
@@ -22,6 +25,32 @@ const ConversationList = ({ InitialConversations = [], users }: Props) => {
 
   const router = useRouter();
   const { isOpen, conversationId } = useConversation();
+  const session = useSession();
+
+  const currentUserEmail = useMemo(() => {
+    return session.data?.user?.email;
+  }, [session.data?.user?.email]);
+
+  useEffect(() => {
+    if (!currentUserEmail) return;
+
+    const handleNewConversation = (
+      newConversation: ExtendedCoversationType
+    ) => {
+      setConversations((current) => {
+        if (find(current, { id: newConversation!.id! })) return current;
+        return [...current, newConversation];
+      });
+    };
+
+    pusherClient.subscribe(currentUserEmail);
+    pusherClient.bind("conversation:new", handleNewConversation);
+
+    return () => {
+      pusherClient.unsubscribe(currentUserEmail);
+      pusherClient.unbind("conversation:new", handleNewConversation);
+    };
+  }, [currentUserEmail]);
 
   return (
     <aside
