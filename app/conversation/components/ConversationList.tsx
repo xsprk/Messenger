@@ -2,7 +2,11 @@
 
 import getConversations from "@/app/actions/getConversations";
 import useConversation from "@/app/hooks/useConversation";
-import { ExtendedCoversationType, ExtendedMessageType } from "@/types";
+import {
+  ExtendedCoversationType,
+  ExtendedMessageType,
+  NewMessageViaPusher,
+} from "@/types";
 import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
@@ -46,15 +50,13 @@ const ConversationList = ({
       });
     };
 
-    const handleNewMessage = (
-      conversationWithNewMessage: ExtendedCoversationType
-    ) => {
+    const handleNewMessage = (newMessage: NewMessageViaPusher) => {
       setConversations((current) =>
         current.map((currentConversation) => {
-          if (currentConversation.id === conversationWithNewMessage.id) {
+          if (currentConversation.id === newMessage.conversationId) {
             return {
               ...currentConversation,
-              messages: conversationWithNewMessage.messages,
+              messages: [...currentConversation.messages, newMessage.message],
             };
           }
 

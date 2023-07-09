@@ -42,8 +42,7 @@ type ExtendedCoversationType = Conversation & {
 
 type Option = { [string]: any };
 
-/* type NewMessageViaPusher = {
+type NewMessageViaPusher = {
   conversationId: string;
   message: ExtendedMessageType;
 };
- */
