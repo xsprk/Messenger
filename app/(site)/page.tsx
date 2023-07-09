@@ -10,7 +10,7 @@ export default function SigninPage() {
       <div
         id="container"
         className=" max-w-md text-center"
-        style={{ marginTop: "-15svh" }}
+        style={{ marginTop: "-18svh" }}
       >
         <Image
           alt="logo"
@@ -21,7 +21,7 @@ export default function SigninPage() {
         />
         <h2 className="mt-6 text-2xl font-bold tracking-tight ">
           Sign in to your account
-        </h2>{" "}
+        </h2>
         <AuthForm />
         <footer className=" flex flex-row justify-center">
           <ul className="hidden fixed bottom-20 md:flex md:flex-col mt-auto  mx-auto  justify-end items-center text-gray-800 space-y-1 px-7 py-5 rounded-xl w-160">
