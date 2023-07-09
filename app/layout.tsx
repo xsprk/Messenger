@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import SessionContext from "./context/SessionContext";
 import ToastContext from "./context/ToastContext";
 import "./globals.css";
+import ActiveStatus from "./components/ActiveStatus";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
       >
         <SessionContext>
           <ToastContext />
+          <ActiveStatus />
           {children}
         </SessionContext>
       </body>
