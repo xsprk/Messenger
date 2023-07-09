@@ -59,7 +59,6 @@ const ConversationList = ({
               messages: [...currentConversation.messages, newMessage.message],
             };
           }
-
           return currentConversation;
         })
       );
