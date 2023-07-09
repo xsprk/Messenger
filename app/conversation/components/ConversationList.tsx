@@ -64,14 +64,26 @@ const ConversationList = ({
       );
     };
 
+    const handleDeleteConversation = (
+      conversationToDelete: ExtendedCoversationType
+    ) => {
+      setConversations((current) =>
+        current.filter(
+          (eachConversation) => eachConversation.id !== conversationToDelete.id
+        )
+      );
+    };
+
     pusherClient.subscribe(currentUserEmail);
     pusherClient.bind("conversation:new", handleNewConversation);
     pusherClient.bind("conversation:newMessage", handleNewMessage);
+    pusherClient.bind("conversation:delete", handleDeleteConversation);
 
     return () => {
       pusherClient.unsubscribe(currentUserEmail);
       pusherClient.unbind("conversation:new", handleNewConversation);
       pusherClient.unbind("conversation:newMessage", handleNewMessage);
+      pusherClient.unbind("conversation:delete", handleDeleteConversation);
     };
   }, [currentUserEmail]);
 
