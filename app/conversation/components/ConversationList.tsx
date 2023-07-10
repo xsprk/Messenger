@@ -51,7 +51,10 @@ const ConversationList = ({
           if (currentConversation.id === newMessage.conversationId) {
             return {
               ...currentConversation,
-              messages: [...currentConversation.messages, newMessage.message],
+              messages: [
+                ...(currentConversation.messages || []),
+                newMessage.message,
+              ],
             };
           }
           return currentConversation;
