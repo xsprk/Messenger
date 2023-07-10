@@ -45,7 +45,7 @@ const ConfirmationModal = ({ isOpen, onClose }: Props) => {
             flex 
             h-12 
             w-12 
-            flex-shrink-0 
+            
             items-center 
             justify-center 
             rounded-full 
@@ -83,7 +83,7 @@ const ConfirmationModal = ({ isOpen, onClose }: Props) => {
           </div>
         </div>
       </div>
-      <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse gap-2">
+      <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse gap-x-2">
         <Button disabled={isLoading} danger onClick={onDelete}>
           Delete
         </Button>
