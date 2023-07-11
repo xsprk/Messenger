@@ -3,19 +3,26 @@
 import Avatar from "@/app/components/Avatar";
 import AvatarGroup from "@/app/components/AvatarGroup";
 import useOtherUsers from "@/app/hooks/useOtherUsers";
-import { ExtendedCoversationType } from "@/types";
+import { pusherClient } from "@/pusher/pusher";
+import {
+  ExtendedCoversationType,
+  ExtendedMessageType,
+  NewMessageViaPusher,
+} from "@/types";
 import clsx from "clsx";
 import { format } from "date-fns";
+import { find } from "lodash";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type Props = {
-  conversation: ExtendedCoversationType;
+  initialConversation: ExtendedCoversationType;
   selected: boolean;
 };
 
-const ConversationBox = ({ conversation, selected }: Props) => {
+const ConversationBox = ({ initialConversation, selected }: Props) => {
+  const [conversation, setConversation] = useState(initialConversation);
   const otherUsers = useOtherUsers(conversation);
   const session = useSession();
   const router = useRouter();
@@ -42,6 +49,31 @@ const ConversationBox = ({ conversation, selected }: Props) => {
       SeenArray.filter((user) => user.email === currentUserEmail).length !== 0
     );
   }, [currentUserEmail, lastMessage]);
+
+  useEffect(() => {
+    if (!currentUserEmail) return;
+    pusherClient.subscribe(currentUserEmail!);
+
+    const messageNewHandler = (newMessage: NewMessageViaPusher) => {
+      setConversation((current) => {
+        if (current.id !== newMessage.conversationId) return current;
+        if (find(current.messages, { id: newMessage.message.id })) {
+          return current;
+        }
+
+        return {
+          ...current,
+          messages: [...current.messages, newMessage.message],
+        };
+      });
+    };
+
+    pusherClient.bind("conversation:newMessage", messageNewHandler);
+    return () => {
+      pusherClient.unsubscribe(conversation.id);
+      pusherClient.unbind("conversation:newMessage", messageNewHandler);
+    };
+  }, [conversation.id, currentUserEmail]);
 
   const lastMessageText = useMemo(() => {
     if (!lastMessage) return "New Conversation";

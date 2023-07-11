@@ -45,7 +45,7 @@ const ConversationList = ({
       });
     };
 
-    const handleNewMessage = (newMessage: NewMessageViaPusher) => {
+    /*  const handleNewMessage = (newMessage: NewMessageViaPusher) => {
       setConversations((current) =>
         current.map((currentConversation) => {
           if (currentConversation.id === newMessage.conversationId) {
@@ -60,7 +60,7 @@ const ConversationList = ({
           return currentConversation;
         })
       );
-    };
+    }; */
 
     const handleDeleteConversation = (
       conversationToDelete: ExtendedCoversationType
@@ -77,13 +77,13 @@ const ConversationList = ({
 
     pusherClient.subscribe(currentUserEmail);
     pusherClient.bind("conversation:new", handleNewConversation);
-    pusherClient.bind("conversation:newMessage", handleNewMessage);
+    /* pusherClient.bind("conversation:newMessage", handleNewMessage); */
     pusherClient.bind("conversation:delete", handleDeleteConversation);
 
     return () => {
       pusherClient.unsubscribe(currentUserEmail);
       pusherClient.unbind("conversation:new", handleNewConversation);
-      pusherClient.unbind("conversation:newMessage", handleNewMessage);
+      /*  pusherClient.unbind("conversation:newMessage", handleNewMessage); */
       pusherClient.unbind("conversation:delete", handleDeleteConversation);
     };
   }, [currentUserEmail, conversationId]);
@@ -124,7 +124,7 @@ const ConversationList = ({
           {conversations.map((conversation) => (
             <ConversationBox
               key={conversation.id}
-              conversation={conversation}
+              initialConversation={conversation}
               selected={conversation.id === conversationId}
             ></ConversationBox>
           ))}
