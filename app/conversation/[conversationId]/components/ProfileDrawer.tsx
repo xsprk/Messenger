@@ -40,7 +40,7 @@ const ProfileDrawer = ({ conversation, isOpen, onClose }: Props) => {
 
     const isActive = members.indexOf(otherUser.email!) !== -1;
     return isActive ? "Active" : "Offline";
-  }, [conversation, members]);
+  }, [conversation, members, otherUser.email]);
 
   return (
     <>

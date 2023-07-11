@@ -23,7 +23,7 @@ const Header = ({ conversation }: Props) => {
     if (conversation.isGroup) return `${conversation.users.length} members`;
     const isActive = members.indexOf(otherUsers[0].email!) !== -1;
     return isActive ? "Active" : "Offline";
-  }, [conversation, members]);
+  }, [conversation, members, otherUsers]);
 
   return (
     <>
