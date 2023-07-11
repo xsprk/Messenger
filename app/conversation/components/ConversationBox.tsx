@@ -21,8 +21,11 @@ type Props = {
   selected: boolean;
 };
 
-const ConversationBox = ({ initialConversation, selected }: Props) => {
-  const [conversation, setConversation] = useState(initialConversation);
+const ConversationBox = ({
+  initialConversation: conversation,
+  selected,
+}: Props) => {
+  /* const [conversation, setConversation] = useState(initialConversation); */
   const otherUsers = useOtherUsers(conversation);
   const session = useSession();
   const router = useRouter();
@@ -50,7 +53,7 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
     );
   }, [currentUserEmail, conversation.messages]);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (!currentUserEmail) return;
     pusherClient.subscribe(currentUserEmail!);
 
@@ -73,7 +76,7 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
       pusherClient.unsubscribe(conversation.id);
       pusherClient.unbind("conversation:newMessage", messageNewHandler);
     };
-  }, [conversation.id, currentUserEmail]);
+  }, [conversation.id, currentUserEmail]); */
 
   const lastMessageText = useMemo(() => {
     if (!lastMessage) return "New Conversation";
