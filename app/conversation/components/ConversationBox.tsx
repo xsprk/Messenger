@@ -57,13 +57,13 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
     const messageNewHandler = (newMessage: NewMessageViaPusher) => {
       setConversation((current) => {
         if (current.id !== newMessage.conversationId) return current;
-        if (find(current.messages, { id: newMessage.message.id })) {
+        if (find(current.messages || [], { id: newMessage.message.id })) {
           return current;
         }
 
         return {
           ...current,
-          messages: [...current.messages, newMessage.message],
+          messages: [...(current.messages || []), newMessage.message],
         };
       });
     };
