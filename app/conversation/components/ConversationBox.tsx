@@ -26,13 +26,13 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
   const otherUsers = useOtherUsers(conversation);
   const session = useSession();
   const router = useRouter();
+  const messages = conversation.messages || [];
 
   const handleClick = useCallback(() => {
     router.push(`/conversation/${conversation.id}`);
   }, [conversation.id]);
 
   const lastMessage = useMemo(() => {
-    const messages = conversation.messages || [];
     return messages[messages.length - 1];
   }, [conversation.messages]);
 
@@ -48,7 +48,7 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
     return (
       SeenArray.filter((user) => user.email === currentUserEmail).length !== 0
     );
-  }, [currentUserEmail, lastMessage]);
+  }, [currentUserEmail, messages]);
 
   useEffect(() => {
     if (!currentUserEmail) return;
@@ -57,13 +57,13 @@ const ConversationBox = ({ initialConversation, selected }: Props) => {
     const messageNewHandler = (newMessage: NewMessageViaPusher) => {
       setConversation((current) => {
         if (current.id !== newMessage.conversationId) return current;
-        if (find(current.messages || [], { id: newMessage.message.id })) {
+        if (find(messages, { id: newMessage.message.id })) {
           return current;
         }
 
         return {
           ...current,
-          messages: [...(current.messages || []), newMessage.message],
+          messages: [...messages, newMessage.message],
         };
       });
     };
